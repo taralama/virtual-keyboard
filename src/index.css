@@ -15,3 +15,7 @@ button {
 button p {
   color: white;
 }
+
+input {
+  caret-color: black !important;
+}

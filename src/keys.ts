@@ -55,7 +55,7 @@ export const row1 = [
         label: "Delete",
         value: "delete",
     },
-];
+] as const;
 
 export const row2 = [
     {
@@ -115,7 +115,7 @@ export const row2 = [
         label: "Backspace",
         value: "backspace",
     },
-];
+] as const;
 export const row3 = [
     {
         label: "Tab",
@@ -174,7 +174,7 @@ export const row3 = [
         label: "|",
         value: "|",
     },
-];
+] as const;
 export const row4 = [
     {
         label: "Caps Lock",
@@ -230,7 +230,7 @@ export const row4 = [
         value: "enter",
     },
 
-];
+] as const;
 export const row5 = [
     {
         label: "Shift",
@@ -283,7 +283,7 @@ export const row5 = [
     },
 
 
-];
+] as const;
 
 export const row6 = [
     {
@@ -340,4 +340,16 @@ export const row6 = [
         value: "enter",
     },
 
-];
+] as const;
+
+export const ALL_KEYS = [
+    ...row1,
+    ...row2,
+    ...row3,
+    ...row4,
+    ...row5,
+    ...row6,
+].map(key => key.value);
+
+export const MODIFIERS_KEYS = Object.values(ALL_KEYS)
+

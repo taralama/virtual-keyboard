@@ -12,9 +12,7 @@ export const isInNoIndicator = (keyValueEntered: string) => {
         KeysValue.space,
         KeysValue.shift,
     ]
-    const isInNoIndicatorList = NO_INDICATOR_LIST.some(
-        (key) => key == keyValueEntered,
-    );
+    const isInNoIndicatorList = NO_INDICATOR_LIST.includes(keyValueEntered as typeof NO_INDICATOR_LIST[number])
 
     console.log(isInNoIndicatorList)
 

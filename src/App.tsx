@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import { row1, row2, row3, row4, row5, row6 } from "./keys";
-import { KeyFunctionMapper } from "./helper";
-import { KeysValue } from "./constants";
 import ClickedIndicator from "./components/ClickedIndicator";
+import { KeysValue } from "./constants";
 import { isInNoIndicator } from "./functions";
+import { KeyFunctionMapper } from "./helper";
+import { row1, row2, row3, row4, row5, row6 } from "./keys";
 
 function App() {
     const [value, setValue] = useState("");
@@ -34,14 +34,36 @@ function App() {
 
     return (
         <>
-            <div className="h-dvh p-4 w-full ">
-                <div className="pb-40 flex flex-col gap-y-20 justify-end items-center border  h-full">
-                    <input
-                        type="text"
-                        value={value}
-                        className="text-3xl border rounded-2xl h-10 w-full"
-                        readOnly
-                    />
+            <div className="min-h-dvh w-full bg-linear-to-br from-slate-900 via-slate-800 to-teal-950 p-4">
+                <div className="flex min-h-[calc(100dvh-2rem)] flex-col items-center justify-end gap-y-20 pb-40">
+                    <section className="w-full max-w-250 rounded-2xl border border-slate-700 bg-slate-900 p-5 shadow-xl shadow-black/20">
+                        <div className="mb-3 flex items-center justify-between gap-4">
+                            <label
+                                htmlFor="keyboard-output"
+                                className="text-xs font-semibold tracking-[0.2em] text-slate-400"
+                            >
+                                YOUR TEXT
+                            </label>
+                            <span
+                                className={`rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${
+                                    isCapsLockOn
+                                        ? "bg-emerald-400/15 text-emerald-300"
+                                        : "bg-slate-800 text-slate-500"
+                                }`}
+                            >
+                                CAPS {isCapsLockOn ? "ON" : "OFF"}
+                            </span>
+                        </div>
+                        <input
+                            id="keyboard-output"
+                            type="text"
+                            value={value}
+                            placeholder="Start typing..."
+                            aria-label="Keyboard output"
+                            className="h-16 w-full rounded-xl border border-slate-700 bg-slate-950 px-4 text-2xl text-white shadow-inner outline-none transition placeholder:text-slate-600 focus:border-sky-400 focus:ring-2 focus:ring-sky-400/30"
+                            readOnly
+                        />
+                    </section>
                     <div className="  max-w-250 border border-black p-2 rounded-2xl flex flex-col gap-y-2">
                         <div className="flex  gap-2">
                             {row1?.map((key, i) => (
@@ -112,7 +134,7 @@ function App() {
 
                                     {key.value == "caps_lock" && (
                                         <div
-                                            className={`h-2 w-2 ${isCapsLockOn ? "bg-black" : "bg-white"} rounded-full absolute right-2 top-4 border border-white`}
+                                            className={`h-2 w-2 ${!isCapsLockOn ? "bg-black" : "bg-white"} rounded-full absolute right-2 top-4 border border-white`}
                                         />
                                     )}
                                 </button>
