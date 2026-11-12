@@ -1,75 +1,51 @@
-# React + TypeScript + Vite
+# Virtual Keyboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive on-screen virtual keyboard web application built with **React 19**, **TypeScript**, **Vite**, and **Tailwind CSS v4**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Full Multi-Row Layout**: 6 distinct keyboard rows representing:
+  - Function keys row (`Esc`, `F1`–`F12`, `PrtScr`, `Delete`)
+  - Number & symbol row (`~` to `+`, `Backspace`)
+  - QWERTY row (`Tab`, `Q`–`P`, `{}|`)
+  - Home row (`Caps Lock`, `A`–`L`, `Enter`)
+  - Bottom letter row (`Shift`, `Z`–`M`, punctuation)
+  - Navigation & modifier row (`Ctrl`, `Fn`, `Alt`, `Space`)
+- **Caps Lock Toggle**: Dynamic uppercase/lowercase character conversion with visual LED status indicator.
+- **Backspace & Input Management**: Character-by-character deletion and instant text concatenation using helper handlers.
+- **Key Visual Feedback**: Interactive click states, realistic key shadows, and pop-up click indicators (`ClickedIndicator`).
+- **Live Output Screen**: Dedicated read-only text viewer showcasing typed text with live character reflection.
+- **Modern Dark UI**: Styled using Tailwind CSS v4 featuring radial gradients and realistic physical keyboard depth.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite 8](https://vite.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Linting**: ESLint
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+```text
+├── public/                 # Static assets and icons
+├── src/
+│   ├── assets/             # Images and SVG assets
+│   ├── components/
+│   │   ├── ClickedIndicator/ # Key-press pop-up bubble preview
+│   │   └── row/              # Row wrapper component
+│   ├── App.tsx             # Main application layout and keyboard rendering
+│   ├── constants.ts        # Keyboard key action constants
+│   ├── functions.ts        # Indicator exclusion helper logic
+│   ├── helper.ts           # KeyFunctionMapper dispatch class
+│   ├── index.css           # Global Tailwind and custom key styles
+│   ├── keys.ts             # Keyboard row layouts and key definitions
+│   └── main.tsx            # Application entry point
+├── package.json            # Scripts and dependencies
+└── vite.config.ts          # Vite configuration
